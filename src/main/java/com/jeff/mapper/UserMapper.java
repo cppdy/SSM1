@@ -16,4 +16,6 @@ public interface UserMapper {
 
     int updUser(User user);
 
+    User login(User user);
+
 }

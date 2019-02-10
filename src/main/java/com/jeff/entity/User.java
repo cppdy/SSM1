@@ -2,8 +2,6 @@ package com.jeff.entity;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class User {
     /**
      * 主键id

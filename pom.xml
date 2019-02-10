@@ -23,10 +23,11 @@
 	</properties>
 
 	<dependencies>
+		<!-- 单元测试插件 -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- java ee -->
@@ -99,11 +100,17 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>${commons-fileupload-version}</version>
 		</dependency>
-		<!-- 分页 -->
+		<!-- 分页插件 -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
 			<version>5.1.2</version>
+		</dependency>
+		<!-- java操作redis的工具类 -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version>
 		</dependency>
 
 	</dependencies>

@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.jeff.entity.User;
 
-public class Test {
+public class MybatisTest {
 
     public static void main(String[] args) throws Exception {
         InputStream is = Resources.getResourceAsStream("mybatis.xml");

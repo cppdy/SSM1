@@ -2,6 +2,9 @@ package com.jeff.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.jeff.entity.User;
 
 public interface UserService {
@@ -17,5 +20,9 @@ public interface UserService {
     boolean updUser(User user);
 
     void insDemo();
+
+    boolean login(User user, HttpServletRequest request, HttpServletResponse response);
+
+    Object getUserInfoByToken(String token);
 
 }

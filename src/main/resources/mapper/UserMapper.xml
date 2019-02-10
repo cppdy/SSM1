@@ -17,6 +17,10 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="login" resultType="user">
+		select * from user where status!=2 and login_name = #{loginName} and password = #{password}
+	</select>
 
 	<insert id="insUser" parameterType="user">
 		insert into user values(
