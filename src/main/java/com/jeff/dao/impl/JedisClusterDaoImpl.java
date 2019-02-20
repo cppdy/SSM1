@@ -6,51 +6,40 @@ import org.springframework.stereotype.Repository;
 
 import com.jeff.dao.JedisClusterDao;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisCluster;
 
 @Repository
 public class JedisClusterDaoImpl implements JedisClusterDao {
     @Resource
-    private JedisPool jedisPool;
+    private JedisCluster jedisCluster;
 
     @Override
     public Boolean exists(String key) {
-        Jedis jedis = jedisPool.getResource();
-        Boolean string = jedis.exists(key);
-        jedis.close();
-        return string;
+
+        return jedisCluster.exists(key);
     }
 
     @Override
     public String get(String key) {
-        Jedis jedis = jedisPool.getResource();
-        String string = jedis.get(key);
-        jedis.close();
-        return string;
+
+        return jedisCluster.get(key);
     }
 
     @Override
     public String set(String key, String value) {
-        Jedis jedis = jedisPool.getResource();
-        String string = jedis.set(key, value);
-        jedis.close();
-        return string;
+
+        return jedisCluster.set(key, value);
     }
 
     @Override
     public Long del(String key) {
-        Jedis jedis = jedisPool.getResource();
-        Long string = jedis.del(key);
-        jedis.close();
-        return string;
+
+        return jedisCluster.del(key);
     }
 
     @Override
     public Long expire(String key, int seconds) {
-        Jedis jedis = jedisPool.getResource();
-        Long result = jedis.expire(key, seconds);
-        jedis.close();
-        return result;
+
+        return jedisCluster.expire(key, seconds);
     }
 }

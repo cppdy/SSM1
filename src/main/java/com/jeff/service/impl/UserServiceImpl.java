@@ -77,6 +77,8 @@ public class UserServiceImpl implements UserService {
     public boolean login(User user, HttpServletRequest request, HttpServletResponse response) {
         User u = userMapper.login(user);
         if (null != u) {
+            // 可以把密码清空
+            u.setPassword(null);
             // 当用户登录成功后把用户信息放入到redis中
             String key = UUID.randomUUID().toString();
             jedisClusterDao.set(key, JsonUtils.objectToJson(u));
@@ -93,8 +95,6 @@ public class UserServiceImpl implements UserService {
     public Object getUserInfoByToken(String token) {
         String json = jedisClusterDao.get(token);
         User user = JsonUtils.jsonToPojo(json, User.class);
-        // 可以把密码清空
-        user.setPassword(null);
         return user;
     }
 
