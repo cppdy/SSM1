@@ -2,6 +2,11 @@ package com.jeff.entity;
 
 import java.util.List;
 
+/**
+ * @description: easyUI数据封装类
+ * @author: Jeff
+ * @date: 2019年02月20日 22:54:13
+ */
 public class EasyUIDatagrid {
     // 当前页显示的数据
     private List<?> rows;

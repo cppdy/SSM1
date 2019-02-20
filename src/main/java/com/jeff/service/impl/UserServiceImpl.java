@@ -16,6 +16,11 @@ import com.jeff.service.UserService;
 import com.jeff.utils.CookieUtils;
 import com.jeff.utils.JsonUtils;
 
+/**
+ * @description: 用户service实现类
+ * @author: Jeff
+ * @date: 2019年02月20日 22:58:29
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -52,25 +57,6 @@ public class UserServiceImpl implements UserService {
     public boolean updUser(User user) {
 
         return userMapper.updUser(user) > 0;
-    }
-
-    @Override
-    public void insDemo() {
-        User user = new User();
-        user.setLoginName("cs0129");
-        user.setPassword("123456");
-        user.setSex(0);
-        user.setUserType(0);
-        user.setStatus(0);
-        userMapper.insUser(user);
-
-        // int num = 6 / 0;
-
-        user.setId(12L);
-        user.setLoginName("xgcs0129");
-        user.setPassword("xg123456");
-        userMapper.updUser(user);
-
     }
 
     @Override

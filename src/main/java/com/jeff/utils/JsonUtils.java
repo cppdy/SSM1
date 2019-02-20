@@ -7,7 +7,9 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * 易购商城自定义响应结构
+ * @description: json工具类
+ * @author: Jeff
+ * @date: 2019年02月20日 22:49:08
  */
 public class JsonUtils {
 
@@ -15,16 +17,11 @@ public class JsonUtils {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     /**
-     * 将对象转换成json字符串。
-     * <p>
-     * Title: pojoToJson
-     * </p>
-     * <p>
-     * Description:
-     * </p>
-     * 
+     * @description: 将对象转换成json字符串
      * @param data
-     * @return
+     * @return String
+     * @author: Jeff
+     * @date: 2019年02月20日 22:46:39
      */
     public static String objectToJson(Object data) {
         try {
@@ -37,11 +34,12 @@ public class JsonUtils {
     }
 
     /**
-     * 将json结果集转化为对象
-     * 
+     * @description: 将json结果集转化为对象
      * @param jsonData json数据
-     * @param clazz 对象中的object类型
-     * @return
+     * @param beanType 对象中的object类型
+     * @return T
+     * @author: Jeff
+     * @date: 2019年02月20日 22:47:08
      */
     public static <T> T jsonToPojo(String jsonData, Class<T> beanType) {
         try {
@@ -54,17 +52,12 @@ public class JsonUtils {
     }
 
     /**
-     * 将json数据转换成pojo对象list
-     * <p>
-     * Title: jsonToList
-     * </p>
-     * <p>
-     * Description:
-     * </p>
-     * 
+     * @description: 将json数据转换成pojo对象list
      * @param jsonData
      * @param beanType
-     * @return
+     * @return List<T>
+     * @author: Jeff
+     * @date: 2019年02月20日 22:47:55
      */
     public static <T> List<T> jsonToList(String jsonData, Class<T> beanType) {
         JavaType javaType = MAPPER.getTypeFactory().constructParametricType(List.class, beanType);

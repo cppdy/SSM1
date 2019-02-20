@@ -2,6 +2,11 @@ package com.jeff.entity;
 
 import java.util.Date;
 
+/**
+ * @description: 用户实体类
+ * @author: Jeff
+ * @date: 2019年02月20日 22:53:52
+ */
 public class User {
     /**
      * 主键id

@@ -3,44 +3,50 @@ package com.jeff.dao;
 public interface JedisClusterDao {
 
     /**
-             * 判断key是否存在
-     * 
+     * @description: 判断key是否存在
      * @param key
-     * @return
+     * @return Boolean
+     * @author: Jeff
+     * @date: 2019年02月20日 23:08:01
      */
     Boolean exists(String key);
 
     /**
-             * 删除
-     * 
+     * @description: 删除
      * @param key
-     * @return
+     * @return Long
+     * @author: Jeff
+     * @date: 2019年02月20日 23:08:13
      */
     Long del(String key);
 
     /**
-             * 设置值
      * 
+     * @description: 设置值
      * @param key
      * @param value
-     * @return
+     * @return String
+     * @author: Jeff
+     * @date: 2019年02月20日 23:08:23
      */
     String set(String key, String value);
 
     /**
-             * 取值
-     * 
+     * @description: 取值
      * @param key
-     * @return
+     * @return String
+     * @author: Jeff
+     * @date: 2019年02月20日 23:08:33
      */
     String get(String key);
 
     /**
-             * 设置key的过期时间
-     * 
+     * @description: 设置key的过期时间
      * @param key
      * @param seconds
-     * @return
+     * @return Long
+     * @author: Jeff
+     * @date: 2019年02月20日 23:08:43
      */
     Long expire(String key, int seconds);
 }
