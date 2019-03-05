@@ -12,7 +12,7 @@ function loadSuccess_on(result) {
 
 //新增
 function add_on() {	
-	var url = 'addPage';
+	var url = 'user/addPage';
 	//如采用默认宽度和高度,参数设置为undefined
 	var width=850;
 	var height=520;
@@ -64,7 +64,7 @@ function del_on(pkid) {
     	$.messager.confirm('询问', '您是否要删除用户信息吗？', function(b) {
             if (b) {
                 progressLoad();
-                $.post('delete', {
+                $.post('user/delete', {
                 	id : pkid
                 }, function(result) {
                     result = $.parseJSON(result);
@@ -88,7 +88,7 @@ function edit_on(pkid) {
     if (pkid != undefined) {
      // 选中记录
      $('#grid').datagrid('getSelected', pkid);
-   	 var url = 'editPage?id=' + pkid;
+   	 var url = 'user/editPage?id=' + pkid;
 		// 如采用默认宽度和高度,参数设置为undefined
 	   	var width=850;
 		var height=520;
@@ -104,7 +104,7 @@ function view_on(pkid) {
   if (pkid != undefined) {
    // 选中记录
    $('#grid').datagrid('getSelected', pkid);
- 	 var url = 'viewPage?id=' + pkid;
+ 	 var url = 'user/viewPage?id=' + pkid;
 		// 如采用默认宽度和高度,参数设置为undefined
 		var width=850;
 		var height=520;
@@ -152,17 +152,6 @@ function formatter_time(value, row, index) {
 		str=year + "年" + month + "月" + d + "日 " + hour + ":" + minute + ":" + second;
 	}
 	return str;
-}
-
-function formatter_button(value, row, index) {
-	var str = '';
-	       str += '&nbsp;&nbsp;';
-	       str += $.formatString('<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:\'icon-search\',plain:true" onclick="view_on(\'{0}\')">查看</a>', row.id);
-	       str += '&nbsp;&nbsp;';
-	       str += $.formatString('<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:\'icon-edit\',plain:true" onclick="edit_on(\'{0}\')">修改</a>', row.id);
-           str += '&nbsp;&nbsp;';
-           str += $.formatString('<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:\'icon-cancel\',plain:true" onclick="del_on(\'{0}\');" >删除</a>', row.id);
-   	return str;
 }
 
 // 将form表单元素的值序列化成对象

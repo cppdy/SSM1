@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:aop="http://www.springframework.org/schema/aop"
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop
 		http://www.springframework.org/schema/aop/spring-aop.xsd
@@ -14,7 +12,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 注解扫描 -->
-	<context:component-scan base-package="com.jeff"></context:component-scan>
+	<context:component-scan base-package="com.jeff.service.impl,com.jeff.dao.impl"></context:component-scan>
 
 	<!-- 加载属性文件,如果多个配置文件逗号分割 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
@@ -61,7 +59,7 @@
 		<property name="sqlSessionFactoryBeanName" value="factory"></property>
 	</bean>
 
-	<!-- 配置通知类对象,在切面中引入-->
+	<!-- 配置通知类对象,在切面中引入 -->
 	<bean id="mybefore" class="com.jeff.advice.MyBeforeAdvice"></bean>
 	<bean id="myafter" class="com.jeff.advice.MyAfterAdvice"></bean>
 
@@ -87,7 +85,7 @@
 			<tx:method name="del*" />
 			<tx:method name="upd*" />
 			<!-- 数据库此事务为只读事务,建议查询方法时使用 -->
-			<tx:method name="*" read-only="true"/>
+			<tx:method name="*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>

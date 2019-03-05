@@ -24,15 +24,16 @@
 					<canvas id="demo-canvas"></canvas>
 					<div class="logo_box">
 						<h3>欢迎您</h3>
-						<form action="#" name="f" method="post">
+						<form action="login" name="form" method="post">
 							<div class="input_outer">
 								<span class="u_user"></span>
-								<input id="loginName" name="loginName" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+								<input id="username" name="username" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
 							</div>
 							<div class="input_outer">
 								<span class="us_uer"></span>
 								<input id="password" name="password" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
 							</div>
+							<input type="checkbox" name="rememberMe"><span>记住我</span>
 							<div class="mb2"><a class="act-but submit" href="javascript:login();" style="color: #FFFFFF">登录</a></div>
 						</form>
 					</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%--项目路径 --%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -12,7 +13,6 @@
 <script type="text/javascript" src="${path}/static/js/easyui/jquery.min.js"></script>   
 <script type="text/javascript" src="${path}/static/js/easyui/jquery.easyui.min.js"></script> 
 <script type="text/javascript" src="${path}/static/js/easyui/locale/easyui-lang-zh_CN.js"></script> 
-<script type="text/javascript" src="${path}/static/js/user.js"></script> 
 </head>
 <body>
 <div class="easyui-layout" data-options="fit:true,border:false">
@@ -20,7 +20,7 @@
     <div data-options="region:'center',border:true" >
         <table id="grid" class="easyui-datagrid" 
         	data-options="
-        	    url : 'dataGrid',//一个URL从远程站点请求数据
+        	    url : 'user/dataGrid',//一个URL从远程站点请求数据
         	    fit : false,//自适应布局
 	            striped : true,//是否显示斑马线效果
 	            rownumbers : true,//如果为true，则显示一个行号列
@@ -33,25 +33,24 @@
 	            pageSize : 5,//在设置分页属性的时候初始化页面大小 
 	            pageList : [ 5, 10, 15, 20],//在设置分页属性的时候 初始化页面大小选择列表
         		toolbar: '#tb',//定义表头操作工具栏 
-		        queryParams:$.serializeObject($('#searchForm')),//在请求远程数据的时候发送额外的参数
 		        onLoadSuccess:function(row, data){loadSuccess_on(data)},//数据加载成功触发,无数据也返回 
 		        method: 'post',//该方法类型请求远程数据
         		border:false">
 				<thead>                                               
 					<tr>        
-						<th data-options="field:'loginName'" width="10%">登陆名</th>
-					    <th data-options="field:'phone'" width="10%">手机号</th>
+						<th data-options="field:'loginName'" width="8%">登陆名</th>
+					    <th data-options="field:'phone'" width="8%">手机号</th>
 						<th data-options="field:'email'" width="10%">邮箱</th>
-						<th data-options="field:'name'" width="5%">姓名</th>
+						<th data-options="field:'name'" width="4%">姓名</th>
 						<th data-options="field:'birthday'" width="8%">出生日期</th>
-						<th data-options="field:'sex',formatter:function(value,row,index){if(value==0){return '男';}else if(value==1){return '女';}}" width="5%">性别</th>
+						<th data-options="field:'sex',formatter:function(value,row,index){if(value==0){return '男';}else if(value==1){return '女';}}" width="4%">性别</th>
 						<th data-options="field:'userType',formatter:function(value,row,index){if(value==0){return '普通用户';}else if(value==1){return '管理员';}else if(value==2){return '超级管理员';}}" width="5%">用户类别</th>
-						<th data-options="field:'status',formatter:function(value,row,index){if(value==0){return '正常';}else if(value==1){return '停用';}else if(value==2){return '已删除';}}" width="5%">状态</th>
-						<th data-options="field:'createTime'" formatter="formatter_time" width="10%">创建时间</th>
+						<th data-options="field:'status',formatter:function(value,row,index){if(value==0){return '正常';}else if(value==1){return '停用';}else if(value==2){return '已删除';}}" width="4%">状态</th>
+						<th data-options="field:'createTime'" formatter="formatter_time" width="12%">创建时间</th>
 						<th data-options="field:'createdBy'" width="5%">创建人</th>
-						<th data-options="field:'updateTime'" formatter="formatter_time" width="10%">修改时间</th>
+						<th data-options="field:'updateTime'" formatter="formatter_time" width="12%">修改时间</th>
 						<th data-options="field:'updatedBy'" width="5%">修改人</th>
-						<th data-options="field:'action'" formatter="formatter_button"  width="12%">操作</th>
+						<th data-options="field:'action'" formatter="formatter_button"  width="15%">操作</th>
 					</tr>
 				</thead>
 		</table>
@@ -70,10 +69,12 @@
 					</div>
 				</form>
 	     </div>
-	     <!-- 页面工具栏操作按钮布局 -->
-	     <div id="toolbar" class="list_toolbar">
-			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add_on()">新增</a>
-		</div>
+	     <shiro:hasPermission name="user:addPage">
+				<!-- 页面工具栏操作按钮布局 -->
+				<div id="toolbar" class="list_toolbar">
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add_on()">新增</a>
+			</div>
+		</shiro:hasPermission>
 	</div>
 </div>
 <!-- 弹出框布局 --> 
@@ -86,5 +87,24 @@
 <div id="footBarView" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:false" onclick="closeWindowView_on()">关闭</a>
 </div>
+<script type="text/javascript" src="${path}/static/js/user.js"></script>
+<script type="text/javascript">
+function formatter_button(value, row, index) {
+	var str = '';
+		   <shiro:hasPermission name="user:viewPage">
+	       str += '&nbsp;&nbsp;';
+	       str += $.formatString('<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:\'icon-search\',plain:true" onclick="view_on(\'{0}\')">查看</a>', row.id);
+	       </shiro:hasPermission>
+	       <shiro:hasPermission name="user:editPage">
+	       str += '&nbsp;&nbsp;';
+	       str += $.formatString('<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:\'icon-edit\',plain:true" onclick="edit_on(\'{0}\')">修改</a>', row.id);
+	       </shiro:hasPermission>
+	       <shiro:hasPermission name="user:delete">
+	       str += '&nbsp;&nbsp;';
+           str += $.formatString('<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:\'icon-cancel\',plain:true" onclick="del_on(\'{0}\');" >删除</a>', row.id);
+           </shiro:hasPermission>
+    return str;
+}
+</script> 
 </body>
 </html>

@@ -7,19 +7,20 @@ document.onkeydown = function(event) {
 };
 
 function login() {
-	var loginName = $("#loginName").val();
+	var username = $("#username").val();
 	var password = $("#password").val();
-	if (loginName == null || loginName == "") {
-		layer.tips('请输入用户名', '#loginName');
+	if (username == null || username == "") {
+		layer.tips('请输入用户名', '#username');
 	} else {
 		if (password == null || password == "") {
 			layer.tips('请输入密码', '#password');
 		} else {
-			$.ajax({
+			$("form").submit();
+			/*$.ajax({
 				type : "POST",
 				url : "login",
 				data : {
-					loginName : loginName,
+					username : username,
 					password : password,
 				},
 				dataType : 'json',
@@ -39,7 +40,7 @@ function login() {
 						time : 2000
 					});
 				}
-			});
+			});*/
 		}
 	}
 }

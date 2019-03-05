@@ -1,10 +1,13 @@
 package com.jeff.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,49 +22,61 @@ import com.jeff.service.UserService;
 @Controller
 public class LoginController {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    /**
-     * @description: 用户登陆界面
-     * @return Object
-     * @author: Jeff
-     * @date: 2019年02月20日 23:03:19
-     */
-    @RequestMapping("loginPage")
-    public Object loginPage() {
+	@RequestMapping(value = { "/", "index" })
+	public String index(Model model) {
 
-        return "login";
-    }
+		Subject subject = SecurityUtils.getSubject();
+		User user = (User) subject.getPrincipal();
+		model.addAttribute("currentUser", user);
 
-    /**
-     * @description: 用户登陆
-     * @param user
-     * @param request
-     * @param response
-     * @return Object
-     * @author: Jeff
-     * @date: 2019年02月20日 23:04:37
-     */
-    @RequestMapping("login")
-    @ResponseBody
-    public Object login(User user, HttpServletRequest request, HttpServletResponse response) {
+		return "index";
+	}
 
-        return userService.login(user, request, response);
-    }
+	/**
+	 * @description: 用户登陆界面
+	 * @return Object
+	 * @author: Jeff
+	 * @date: 2019年02月20日 23:03:19
+	 */
+	@RequestMapping("toLogin")
+	public Object toLogin() {
 
-    /**
-     * @description: 根据token获取用户信息
-     * @param token
-     * @return Object
-     * @author: Jeff
-     * @date: 2019年02月20日 23:04:48
-     */
-    @RequestMapping("getUserInfo")
-    @ResponseBody
-    public Object getUserInfoByToken(String token) {
+		return "login";
+	}
 
-        return userService.getUserInfoByToken(token);
-    }
+	/**
+	 * @description: 用户登陆
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @return Object
+	 * @author: Jeff
+	 * @date: 2019年02月20日 23:04:37
+	 */
+	@RequestMapping("login")
+	public Object login(HttpServletRequest request, Model model) {
+		String className = (String) request.getAttribute("shiroLoginFailure");
+		if (UnknownAccountException.class.getName().equals(className)) {
+			model.addAttribute("msg", "用户名或密码错误");
+		}
+		return "login";
+	}
+
+	/**
+	 * @description: 根据token获取用户信息
+	 * @param token
+	 * @return Object
+	 * @author: Jeff
+	 * @date: 2019年02月20日 23:04:48
+	 */
+	@RequestMapping("getUserInfo")
+	@ResponseBody
+	public Object getUserInfoByToken(String token) {
+
+		return userService.getUserInfoByToken(token);
+	}
 
 }

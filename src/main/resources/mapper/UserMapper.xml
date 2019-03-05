@@ -18,8 +18,8 @@
 		</where>
 	</select>
 	
-	<select id="login" resultType="user">
-		select * from user where status!=2 and login_name = #{loginName} and password = #{password}
+	<select id="findUserByName" parameterType="String" resultType="user">
+		select * from user where status!=2 and login_name = #{username}
 	</select>
 
 	<insert id="insUser" parameterType="user">

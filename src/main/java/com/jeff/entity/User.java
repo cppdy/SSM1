@@ -1,5 +1,6 @@
 package com.jeff.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,233 +8,236 @@ import java.util.Date;
  * @author: Jeff
  * @date: 2019年02月20日 22:53:52
  */
-public class User {
-    /**
-     * 主键id
-     */
-    private Long id;
+public class User implements Serializable {
 
-    /**
-     * 登陆名
-     */
-    private String loginName;
+	/**
+	 * 主键id
+	 */
+	private Long id;
 
-    /**
-     * 手机号
-     */
-    private String phone;
+	/**
+	 * 登陆名
+	 */
+	private String loginName;
 
-    /**
-     * 邮箱
-     */
-    private String email;
+	/**
+	 * 手机号
+	 */
+	private String phone;
 
-    /**
-     * 密码
-     */
-    private String password;
+	/**
+	 * 邮箱
+	 */
+	private String email;
 
-    /**
-     * 加密盐
-     */
-    private String salt;
+	/**
+	 * 密码
+	 */
+	private String password;
 
-    /**
-     * 昵称
-     */
-    private String nickName;
+	/**
+	 * 加密盐
+	 */
+	private String salt;
 
-    /**
-     * 姓名
-     */
-    private String name;
+	/**
+	 * 昵称
+	 */
+	private String nickName;
 
-    /**
-     * 性别:0.男 1.女
-     */
-    private Integer sex;
+	/**
+	 * 姓名
+	 */
+	private String name;
 
-    /**
-     * 出生日期
-     */
-    private String birthday;
+	/**
+	 * 性别:0.男 1.女
+	 */
+	private Integer sex;
 
-    /**
-     * 个人头像
-     */
-    private String photoUrl;
+	/**
+	 * 出生日期
+	 */
+	private String birthday;
 
-    /**
-     * 用户类别:0.普通用户 1.管理员 2.超级管理员
-     */
-    private Integer userType;
+	/**
+	 * 个人头像
+	 */
+	private String photoUrl;
 
-    /**
-     * 用户状态:0.正常 1.停用 2.已删除
-     */
-    private Integer status;
+	/**
+	 * 用户类别:0.普通用户 1.管理员 2.超级管理员
+	 */
+	private Integer userType;
 
-    /**
-     * 创建时间
-     */
-    private Date createTime;
+	/**
+	 * 用户状态:0.正常 1.停用 2.已删除
+	 */
+	private Integer status;
 
-    /**
-     * 创建人
-     */
-    private String createdBy;
+	/**
+	 * 创建时间
+	 */
+	private Date createTime;
 
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
+	/**
+	 * 创建人
+	 */
+	private String createdBy;
 
-    /**
-     * 修改人
-     */
-    private String updatedBy;
+	/**
+	 * 修改时间
+	 */
+	private Date updateTime;
 
-    public Long getId() {
-        return id;
-    }
+	/**
+	 * 修改人
+	 */
+	private String updatedBy;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getLoginName() {
-        return loginName;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
-    }
+	public String getLoginName() {
+		return loginName;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getSalt() {
-        return salt;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
+	public String getSalt() {
+		return salt;
+	}
 
-    public String getNickName() {
-        return nickName;
-    }
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
+	public String getNickName() {
+		return nickName;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public Integer getSex() {
-        return sex;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
+	public Integer getSex() {
+		return sex;
+	}
 
-    public String getBirthday() {
-        return birthday;
-    }
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
+	public String getBirthday() {
+		return birthday;
+	}
 
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
 
-    public Integer getUserType() {
-        return userType;
-    }
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
 
-    public void setUserType(Integer userType) {
-        this.userType = userType;
-    }
+	public Integer getUserType() {
+		return userType;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public void setUserType(Integer userType) {
+		this.userType = userType;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
+	public String getCreatedBy() {
+		return createdBy;
+	}
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+	public Date getUpdateTime() {
+		return updateTime;
+	}
 
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", loginName=" + loginName + ", phone=" + phone + ", email=" + email + ", password=" + password + ", salt=" + salt + ", nickName=" + nickName + ", name=" + name
-                + ", sex=" + sex + ", birthday=" + birthday + ", photoUrl=" + photoUrl + ", userType=" + userType + ", status=" + status + ", createTime=" + createTime + ", createdBy=" + createdBy
-                + ", updateTime=" + updateTime + ", updatedBy=" + updatedBy + "]";
-    }
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", loginName=" + loginName + ", phone=" + phone + ", email=" + email + ", password="
+				+ password + ", salt=" + salt + ", nickName=" + nickName + ", name=" + name + ", sex=" + sex
+				+ ", birthday=" + birthday + ", photoUrl=" + photoUrl + ", userType=" + userType + ", status=" + status
+				+ ", createTime=" + createTime + ", createdBy=" + createdBy + ", updateTime=" + updateTime
+				+ ", updatedBy=" + updatedBy + "]";
+	}
 
 }
